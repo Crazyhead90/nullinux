@@ -7,7 +7,7 @@ import argparse
 import datetime
 from time import sleep
 from ipaddress import IPv4Network
-from threading import Thread, activeCount
+from threading import Thread, active_count
 
 if sys.version_info[0] < 3:
     from commands import getoutput
@@ -238,9 +238,9 @@ class nullinux():
                 Thread(target=self.rid_thread, args=(rid,target,), daemon=True).start()
             except:
                 pass
-            while activeCount() > max_threads:
+            while active_count() > max_threads:
                 sleep(0.001)
-        while activeCount() > 1:
+        while active_count() > 1:
             sleep(0.001)
 
     def rid_thread(self, rid, target):
